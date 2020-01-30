@@ -5,15 +5,12 @@
     android:background="#ffffff"
     tools:context=".activities.SplashActivity">
 
-    <!-- The primary full-screen view. This can be replaced with whatever view
-         is needed to present your content, e.g. VideoView, SurfaceView,
-         TextureView, etc. -->
     <ImageView
-        android:id="@+id/fullscreen_content"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:id="@+id/bit_coin_logo"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
         android:layout_gravity="center"
         android:keepScreenOn="true"
-        tools:srcCompat="@mipmap/bit_coin_round" />
+        android:src="@mipmap/bit_coin_foreground"/>
 
 </FrameLayout>

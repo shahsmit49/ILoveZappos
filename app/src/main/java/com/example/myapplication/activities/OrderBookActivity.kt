@@ -1,6 +1,8 @@
 package com.example.myapplication.activities
 
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -9,6 +11,7 @@ import com.example.myapplication.R
 import com.example.myapplication.adapter.OrderBookViewAdapter
 import com.example.myapplication.api.RetrofitClient
 import com.example.myapplication.model.BidsAsksModel
+import com.example.myapplication.wokers.PriceAlertWorker
 import kotlinx.android.synthetic.main.order_book_activity.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -16,6 +19,8 @@ import retrofit2.Response
 
 
 class OrderBookActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListener  {
+
+    val handler: Handler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +43,9 @@ class OrderBookActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListe
             loadData()
 
         })
+
+
+        doAutoRefresh()
 
     }
 
@@ -80,4 +88,17 @@ class OrderBookActivity : AppCompatActivity(), SwipeRefreshLayout.OnRefreshListe
             })
     }
 
+    override fun onResume() {
+        val app_preferences = this.getSharedPreferences(MainActivity.SHARED_PREF, Context.MODE_PRIVATE)
+        val price = app_preferences.getString(MainActivity.USER_INPUT_KEY, null)
+        PriceAlertWorker.user_input_price = price?:"0.0"
+        super.onResume()
+    }
+
+    private fun doAutoRefresh() {
+        handler.postDelayed( {
+                loadData()
+                doAutoRefresh()
+            }, 2000)
+    }
 }

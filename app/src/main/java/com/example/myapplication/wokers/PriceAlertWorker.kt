@@ -16,7 +16,6 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import androidx.work.Worker
 import androidx.work.WorkerParameters
-import com.example.myapplication.activities.AddAlertActivity
 import com.example.myapplication.activities.MainActivity
 import com.example.myapplication.api.RetrofitClient
 import com.example.myapplication.model.AmountModel
@@ -30,6 +29,7 @@ class PriceAlertWorker (appContext: Context, workerParams: WorkerParameters)
 
     companion object {
         var  context: Context? = null
+        var user_input_price :String = "0.0"
     }
 
     val title : String = "Hey, good news!"
@@ -37,13 +37,14 @@ class PriceAlertWorker (appContext: Context, workerParams: WorkerParameters)
 
         override fun doWork(): Result {
 
-            val pref: SharedPreferences = context!!.getSharedPreferences(AddAlertActivity.SHARED_PREF, MODE_PRIVATE)
+            val pref: SharedPreferences = context!!.getSharedPreferences(MainActivity.SHARED_PREF, MODE_PRIVATE)
 
-            val user_input_price = pref.getString(AddAlertActivity.USER_INPUT_KEY, null)
+            val price = pref.getString(MainActivity.USER_INPUT_KEY, null)
 
-            if(user_input_price == null) {
+
+            if(user_input_price.equals("0.0") || price == null) {
                 Log.d("Price Alert","***User input empty***")
-
+                user_input_price = "0.0"
                 // Indicate whether the task finished with failure with the Result
                 return Result.failure()
             }
@@ -51,7 +52,7 @@ class PriceAlertWorker (appContext: Context, workerParams: WorkerParameters)
 
             // Check for bitcoin price
             // get bid price
-            getBitcoinAmount(context, user_input_price.toString().toDouble())
+            getBitcoinAmount(user_input_price.toString().toDouble())
 
 
             // Indicate whether the task finished successfully with the Result
@@ -99,7 +100,7 @@ class PriceAlertWorker (appContext: Context, workerParams: WorkerParameters)
     }
 
 
-    private fun getBitcoinAmount(context: Context?, user_input_price : Double) {
+    private fun getBitcoinAmount(user_input_price : Double) {
 
         RetrofitClient.instance.get_ticker_hour()
             .enqueue(object : Callback<AmountModel> {

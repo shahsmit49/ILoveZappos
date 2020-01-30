@@ -1,5 +1,6 @@
 package com.example.myapplication.activities
 
+import android.content.Context
 import android.graphics.Color
 import android.graphics.Color.WHITE
 import android.os.Bundle
@@ -8,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.api.RetrofitClient
 import com.example.myapplication.model.TransactionHistoryModel
+import com.example.myapplication.wokers.PriceAlertWorker
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.XAxis
@@ -16,8 +18,6 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.utils.ColorTemplate
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_view_graph.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -33,8 +33,6 @@ class ViewPriceHistoryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_graph)
 
-        title = "LineChartTime"
-
         RetrofitClient.instance.getTransactionHistory()
             .enqueue(object:Callback<List<TransactionHistoryModel>>{
 
@@ -46,7 +44,6 @@ class ViewPriceHistoryActivity : AppCompatActivity() {
                     call: Call<List<TransactionHistoryModel>>,
                     response: Response<List<TransactionHistoryModel>>
                 ) {
-
 
                     if(!response.isSuccessful)
                         return
@@ -68,7 +65,7 @@ class ViewPriceHistoryActivity : AppCompatActivity() {
                     val lineDataSet1 = LineDataSet(dataValues,"Price history over time")
                     lineDataSet1.color = WHITE
                     lineDataSet1.setDrawCircles(true)
-                    lineDataSet1.setCircleColor(Color.YELLOW)
+                    lineDataSet1.setCircleColor(Color.rgb(246, 146, 26))
                     lineDataSet1.setDrawCircleHole(true)
                     lineDataSet1.circleHoleColor =WHITE
 
@@ -102,7 +99,7 @@ class ViewPriceHistoryActivity : AppCompatActivity() {
         chart.setNoDataTextColor(WHITE)
 
         //chart.setDrawGridBackground(true)
-        chart.setBorderColor(WHITE)
+        chart.setBorderColor(Color.BLACK)
         chart.setDrawBorders(true)
 
         //animate x
@@ -143,5 +140,12 @@ class ViewPriceHistoryActivity : AppCompatActivity() {
 
         val rightAxis = chart.axisRight
         rightAxis.isEnabled = false
+    }
+
+    override fun onResume() {
+        val app_preferences = this.getSharedPreferences(MainActivity.SHARED_PREF, Context.MODE_PRIVATE)
+        val price = app_preferences.getString(MainActivity.USER_INPUT_KEY, null)
+        PriceAlertWorker.user_input_price = price?:"0.0"
+        super.onResume()
     }
 }

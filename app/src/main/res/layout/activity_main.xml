@@ -5,27 +5,87 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:layout_width="wrap_content"
+    <TextView
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text = "ORDERS"
-        android:id="@+id/show_orders"/>
+        android:layout_marginTop="160dp"
+        android:textColor="@color/colorYellow"
+        android:textSize="50sp"
+        android:textAlignment="center"
+        android:text="Set alert"/>
+
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimaryDark"
+        android:inputType="numberDecimal"
+        android:textSize="15sp"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:hint="e.g. 1234.456"
+        android:id="@+id/bitcoin_price"
+        android:maxLength="10"
+        android:textColorHint="@color/colorGray"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text = "GRAPH"
-        android:id="@+id/show_graph"/>
+        android:layout_marginTop="30dp"
+        android:textColor="@color/colorPrimary"
+        android:background="@color/colorYellow"
+        android:text="Save"
+        android:id="@+id/save_button"
+        android:layout_gravity="center"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        android:padding="2dp" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text = "ALERT"
-        android:id="@+id/add_alert"/>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
+        <View android:id="@+id/strut"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text = "Orders"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@id/strut"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@color/colorPrimary"
+            android:elevation="0dp"
+            android:layout_alignParentBottom="true"
+            style="?android:attr/borderlessButtonStyle"
+            android:id="@+id/show_orders"/>
+
+        <Button
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text = "Graph"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:layout_alignLeft="@id/strut"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignRight="@+id/show_orders"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="0dp"
+            style="?android:attr/borderlessButtonStyle"
+            android:textColor="@color/colorPrimary"
+            android:id="@+id/show_graph"/>
+
+
+</RelativeLayout>
 
 </LinearLayout>
