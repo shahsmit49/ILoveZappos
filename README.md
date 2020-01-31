@@ -9,15 +9,25 @@ The app provides a platform to visualize trends in the price of ***bitcoin***, l
   Information retrieved using the publically available bitstamp api : https://www.bitstamp.net/api/v2/transactions/btcusd/ and 
   displayed in a **Live-data table** using *Recycler-views*.
   
+  <img src = "img%20(6).jpeg" width="300" height="400"/>
+  
 * Contains a graph of the recent transaction history of bitcoins
   Information retrieved using the publically available bitstamp api : https://www.bitstamp.net/api/v2/order_book/btcusd/ and displayed 
   using a **line graph** showing the price history over time.
+  
+  <img src = "img%20(4).jpeg" width="300" height="400"/>
 
-* Takes price input from the user and store it using **Shared-preferences** in the local storage.
+* Takes price input from the user and store it using **Shared-preferences** in the local storage. 
+
+  <img src = "img%20(5).jpeg" width="300" height="400"/>
 
 * The ability to create a price alert notification when the current price is below a user selected value 
   Information retrieved using the publically available bitstamp api : https://www.bitstamp.net/api/v2/ticker_hour/btcusd/ and is hit 
-  every hour in the background using **WorkManager** android api. if the current bitcoin price has fallen below a specified user input, then send notification to user. When clicked on notification opens the application.
+  every hour in the background using **WorkManager** android api. if the current bitcoin price has fallen below a specified user input, 
+  then send notification to user. When clicked on notification opens the application.
+  
+  <img src = "img%20(1).jpeg" width="300" height="400"/>
+
   
 # Open source libraries used: 
   
