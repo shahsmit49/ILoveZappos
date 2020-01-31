@@ -17,8 +17,7 @@ The app provides a platform to visualize trends in the price of ***bitcoin***, l
 
 * The ability to create a price alert notification when the current price is below a user selected value 
   Information retrieved using the publically available bitstamp api : https://www.bitstamp.net/api/v2/ticker_hour/btcusd/ and is hit 
-  every hour in the background using **WorkManager** android api. if the current bitcoin price has fallen below a specified user  
-  input, then send notification to user. When clicked on notification opens the application.
+  every hour in the background using **WorkManager** android api. if the current bitcoin price has fallen below a specified user input, then send notification to user. When clicked on notification opens the application.
   
 # Open source libraries used: 
   
