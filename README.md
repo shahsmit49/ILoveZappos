@@ -3,6 +3,10 @@
 This **Kotlin native android** application is built with some creative and interactive open source libraries on top of the android framework.
 The app provides a platform to visualize trends in the price of ***bitcoin***, latest bids and asks, etc.
 
+# APK
+  
+  * Drive Link - https://drive.google.com/open?id=16wjNGCQ6MM-aNKjwaBiaGOMfunmIQ8uR
+
 # Detailed description of the features:
 
 * Views displaying order book information of bids and asks
@@ -45,9 +49,5 @@ The app provides a platform to visualize trends in the price of ***bitcoin***, l
     Android’s JobScheduler to provide a consistent job scheduling service back to api level 14 while leveraging JobScheduler on newer 
     devices.
   * Shared preferences
-  
-# APK
-  
-  * Drive Link - https://drive.google.com/open?id=16wjNGCQ6MM-aNKjwaBiaGOMfunmIQ8uR
   
   
